@@ -1,14 +1,12 @@
 package studio.dreamys.lilac.module;
 
-import lombok.Getter;
 import net.minecraftforge.common.MinecraftForge;
 import studio.dreamys.lilac.lilac;
 import studio.dreamys.lilac.setting.Setting;
 
-@Getter
 public class Module {
-    private String name;
-    private String category;
+    private final String name;
+    private final String category;
     private int key;
     private boolean toggled;
 
@@ -19,13 +17,29 @@ public class Module {
         toggled = false;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public int getKey() {
+        return key;
+    }
+
     public void key(int key) {
         this.key = key;
         if (lilac.getInstance().getSaveLoad() != null) {
             lilac.getInstance().getSaveLoad().save();
         }
     }
-    
+
+    public Setting getSetting(String name) {
+        return lilac.getInstance().getSettingsManager().getSettingByName(this, name);
+    }
+
     public void set(Setting set) {
         lilac.getInstance().getSettingsManager().rSetting(set);
     }
@@ -36,10 +50,16 @@ public class Module {
         if (this.toggled) onEnable();
         else onDisable();
 
+        onToggled();
+
         if (lilac.getInstance().getSaveLoad() != null) lilac.getInstance().getSaveLoad().save();
     }
 
-    public void toggle() {
+    public boolean isToggled() {
+        return toggled;
+    }
+
+    public void toggle()  {
         toggled = !toggled;
 
         if (toggled) onEnable();

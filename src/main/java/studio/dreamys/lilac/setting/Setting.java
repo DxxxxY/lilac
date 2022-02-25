@@ -5,7 +5,6 @@ import studio.dreamys.lilac.module.Module;
 
 import java.util.ArrayList;
 
-@SuppressWarnings("unused")
 public class Setting {
     private final String name;
     private final Module parent;

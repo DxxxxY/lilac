@@ -1,23 +1,26 @@
 package studio.dreamys.lilac.module;
 
-import lombok.Getter;
-import lombok.SneakyThrows;
-
 import java.util.ArrayList;
 import java.util.Objects;
 
-@Getter
 public class ModuleManager {
-    private ArrayList<Module> modules;
+    private final ArrayList<Module> modules;
 
-    @SneakyThrows
     public ModuleManager(ArrayList<Class<? extends Module>> modules) {
         long l = System.currentTimeMillis();
         this.modules = new ArrayList<>();
-        for (Class<? extends Module> module : modules) {
-            this.modules.add(module.newInstance());
+        try {
+            for (Class<? extends Module> module : modules) {
+                this.modules.add(module.newInstance());
+            }
+        } catch (InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
         }
         System.out.println("Initialized Module Manager. (" + (System.currentTimeMillis() - l) + "ms)");
+    }
+
+    public ArrayList<Module> getModules() {
+        return modules;
     }
 
     public Module getModule(String name) {

@@ -1,6 +1,5 @@
 package studio.dreamys.lilac;
 
-import lombok.Getter;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -12,18 +11,15 @@ import studio.dreamys.lilac.module.ModuleManager;
 import studio.dreamys.lilac.setting.SettingsManager;
 import studio.dreamys.lilac.util.SaveLoad;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
-@Getter
 public class lilac {
-    private ModuleManager moduleManager;
-    private SettingsManager settingsManager;
-    private ClickGUI clickGUI;
-    private SaveLoad saveLoad;
-    private ArrayList<String> categories;
+    private final ModuleManager moduleManager;
+    private final SettingsManager settingsManager;
+    private final ClickGUI clickGUI;
+    private final SaveLoad saveLoad;
+    private final ArrayList<String> categories;
 
-    @Getter
     private static lilac instance;
 
     public lilac(String modid, ArrayList<Class<? extends Module>> modules, ArrayList<String> categories) {
@@ -48,5 +44,29 @@ public class lilac {
                 if (m.getKey() == keyCode) m.toggle();
             }
         }
+    }
+
+    public ModuleManager getModuleManager() {
+        return moduleManager;
+    }
+
+    public SettingsManager getSettingsManager() {
+        return settingsManager;
+    }
+
+    public ClickGUI getClickGUI() {
+        return clickGUI;
+    }
+
+    public SaveLoad getSaveLoad() {
+        return saveLoad;
+    }
+
+    public ArrayList<String> getCategories() {
+        return categories;
+    }
+
+    public static lilac getInstance() {
+        return instance;
     }
 }

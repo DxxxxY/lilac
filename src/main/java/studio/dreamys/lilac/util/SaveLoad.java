@@ -9,8 +9,9 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class SaveLoad {
-    private File file;
+    private final File file;
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     public SaveLoad(String modid) {
         File dir = new File(Minecraft.getMinecraft().mcDataDir, modid);
         file = new File(dir, "config.txt");

@@ -1,4 +1,4 @@
-package studio.dreamys;
+package studio.dreamys.test;
 
 import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
