@@ -31,7 +31,8 @@ jar {
     sourceSets {
         main {
             java {
-                exclude '**/test/**'
+                exclude "**/test/**"
+                exclude "**/test/"
             }
             resources {
                 exclude "**/mcmod.info"
